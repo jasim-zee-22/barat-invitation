@@ -59,7 +59,8 @@ body {
   font-family: var(--font-body);
   font-weight: 500;
   text-transform: none;
-  background: linear-gradient(135deg, #c8d8e8 0%, #dae4ed 20%, var(--cream) 35%, var(--cream) 65%, #dae4ed 80%, #c8d8e8 100%);
+ 
+  background: rgb(249, 240, 224);
   color: var(--text-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -334,12 +335,20 @@ img {
   animation: heroTextIn 1.2s 2s both;
 }
 
+/* Same idiom as .tap-label on the envelope — both are small instructional
+   cues, so they speak in one voice rather than two. text-indent offsets the
+   trailing letter-space, which would otherwise pull centred tracked text a
+   fraction to the left. */
 .hero-scroll-text {
-  font-family: var(--font-script);
-  font-size: 22px;
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
+  text-transform: uppercase;
   color: var(--gold);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-  margin-bottom: 6px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
 }
 
 .hero-scroll-chevron {
@@ -998,6 +1007,7 @@ img {
   position: relative;
   background: url('assets/paper-bg.webp') center / cover no-repeat;
   padding: 60px 24px 80px;
+      z-index: 1;
   margin-top: -4vh;
   text-align: center;
   overflow: hidden;
@@ -1073,7 +1083,7 @@ img {
   position: relative;
   /* Inherited from the merged-away #looking-forward, which used to carry
      this seam over the paper texture of #contact */
-  margin-top: -3vh;
+  margin-top: -4vh;
   background: var(--cream);
   padding: 70px 24px 140px;
   text-align: center;
@@ -1222,24 +1232,28 @@ img {
 /* ================================================================
    FLOATING AUDIO BUTTON
    ================================================================ */
+/* The gold ring is doing real work: the button floats over the hero video,
+   cream sections and paper texture, all of them light, so a pale face alone
+   would have no edge to find. Shadow is warm-toned rather than black — a
+   neutral shadow under a cream face reads as grubby against this palette. */
 #audio-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;
-  height: 60px;
-  background: var(--maroon);
+  width: 48px;
+  height: 48px;
+  background: var(--cream-light);
+  border: 1.5px solid var(--gold);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2147483647;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 12px rgba(140, 100, 60, 0.22);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.4s ease, transform 0.3s ease, background 0.3s ease;
-  border: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -1250,14 +1264,15 @@ img {
 }
 
 #audio-btn:hover {
-  background: var(--maroon-light);
+  background: var(--cream);
   transform: scale(1.05);
 }
 
+/* Kept at the same ~46% of the button's width it had at 60px */
 #audio-btn svg {
-  width: 28px;
-  height: 28px;
-  fill: var(--white);
+  width: 22px;
+  height: 22px;
+  fill: var(--gold);
 }
 
 /* ================================================================
