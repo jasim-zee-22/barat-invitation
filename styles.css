@@ -327,7 +327,7 @@ img {
    move within the box as the aspect ratio changes.
    This margin is the knob for the gap — see .hero-content's margin-bottom. */
 .hero-scroll {
-  margin-top: 120px;
+  margin-top: 100px;
   opacity: 0;
   animation: heroTextIn 1.2s 2s both;
 }
