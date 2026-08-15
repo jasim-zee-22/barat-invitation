@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barat Invitation — Ammar & Zainab</title>
+  <meta name="description"
+    content="You are cordially invited to the Barat ceremony of Syed Ammar Shah and Zainab Zia. September 26, 2026.">
+  <meta property="og:title" content="Barat Invitation — Ammar & Zainab">
+  <meta property="og:description"
+    content="You are cordially invited to the Barat ceremony of Syed Ammar Shah and Zainab Zia.">
+  <meta property="og:type" content="website">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="locked">
+
+  <!-- ════════════════════════════════════════════════════════════
+       BACKGROUND AUDIO (loop, will play when user taps envelope)
+       ════════════════════════════════════════════════════════════ -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/barat.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ENVELOPE OVERLAY — First thing user sees
+       ════════════════════════════════════════════════════════════ -->
+  <div id="envelope-overlay">
+    <img class="envelope-image" src="assets/envelope-cover.png" alt="Wedding invitation envelope — tap to open"
+      draggable="false">
+    <div class="tap-wrap">
+      <div class="tap-chevron"></div>
+      <div class="tap-label">Tap to open</div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ENVELOPE VIDEO — Plays once after tap, then fades out
+       ════════════════════════════════════════════════════════════ -->
+  <div id="video-wrapper">
+    <video id="envelope-video" src="videos/envelope.mp4" muted playsinline preload="auto"></video>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FLOATING AUDIO BUTTON — Appears after envelope video ends
+       ════════════════════════════════════════════════════════════ -->
+  <button id="audio-btn" aria-label="Toggle background music">
+    <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:block">
+      <rect x="6" y="5" width="4" height="14" rx="1" />
+      <rect x="14" y="5" width="4" height="14" rx="1" />
+    </svg>
+    <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none">
+      <polygon points="5,3 19,12 5,21" />
+    </svg>
+  </button>
+
+  <div class="page-wrapper">
+
+    <!-- ════════════════════════════════════════════════════════════
+       HERO SECTION — Looping video background with names
+       ════════════════════════════════════════════════════════════ -->
+    <section id="hero">
+      <video class="hero-video" id="hero-video" src="videos/hero.mp4" muted playsinline loop preload="auto"></video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-subtitle">Barat</p>
+        <p class="hero-date">26.09.26</p>
+        <p class="hero-name hero-name-groom">Ammar</p>
+        <p class="hero-ampersand">&amp;</p>
+        <p class="hero-name hero-name-bride">Zainab</p>
+
+        <!-- Inside .hero-content so it keeps a fixed gap below the names -->
+        <div class="hero-scroll">
+          <p class="hero-scroll-text">Scroll down</p>
+          <div class="hero-scroll-chevron"></div>
+        </div>
+      </div>
+
+      <!-- Floral corner borders — spill past the hero into the section below -->
+      <img class="hero-floral hero-floral-left" src="assets/left-border.png" alt="">
+      <img class="hero-floral hero-floral-right" src="assets/right-border.png" alt="">
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+       TWO SOULS / BISMILLAH SECTION
+       ════════════════════════════════════════════════════════════ -->
+    <section id="two-souls">
+      <div class="two-souls-inner">
+        <!-- Bismillah calligraphy -->
+        <img class="bismillah-img reveal" src="assets/bismillah.png" alt="Bismillah ir-Rahman ir-Rahim" loading="lazy">
+
+        <!-- Invitation text -->
+        <div class="two-souls-body reveal">
+          <p class="invitation-highlight invitation-bismillah">
+            In the name of Allah,<br>
+            The most Beneficent and the most Merciful
+          </p>
+
+          <!-- Marks the turn from invocation to invitation -->
+          <div class="ornament-divider">
+            <span class="ornament-curl-left">❧</span>
+            <span class="ornament-line"></span>
+            <span class="ornament-diamond"></span>
+            <span class="ornament-line"></span>
+            <span class="ornament-curl-right">❧</span>
+          </div>
+
+          <p class="invitation-hosts">
+            <span class="invitation-highlight">Mr. &amp; Mrs. Syed Mahmood Shah</span>
+          </p>
+          <p class="invitation-request">
+            request the honor of your presence at the
+          </p>
+          <p class="event-title">Barat</p>
+          <p class="invitation-lead">of their beloved son</p>
+          <p class="couple-names-invitation">Syed Ammar Shah</p>
+          <p class="invitation-connector">with</p>
+          <p class="couple-names-invitation">Zainab Zia</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ════════════════════════════════════════════════════════════
+       COUNTDOWN TIMER
+       ════════════════════════════════════════════════════════════ -->
+    <section id="countdown">
+      <h2 class="countdown-title reveal">The Celebration Begins In</h2>
+      <div class="countdown-timer reveal">
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-days">---</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-hours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-mins">--</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-block">
+          <span class="countdown-number" id="cd-secs">--</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ════════════════════════════════════════════════════════════
+       PROGRAMME / SCHEDULE
+       ════════════════════════════════════════════════════════════ -->
+    <section id="programme">
+      <!-- Diagonal floral pair framing the schedule -->
+      <img class="programme-floral programme-floral-tr" src="assets/top-right.png" alt="" loading="lazy">
+      <img class="programme-floral programme-floral-bl" src="assets/bottom-left.png" alt="" loading="lazy">
+
+      <h2 class="programme-title reveal">Programme, Insha Allah</h2>
+
+      <!-- Ornamental divider -->
+      <div class="ornament-divider reveal">
+        <span class="ornament-curl-left">❧</span>
+        <span class="ornament-line"></span>
+        <span class="ornament-diamond"></span>
+        <span class="ornament-line"></span>
+        <span class="ornament-curl-right">❧</span>
+      </div>
+
+      <p class="programme-date reveal">
+        Saturday, September 26, 2026
+      </p>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-line-fill"></div>
+
+        <!-- Single flower marker — travels down to each event on scroll -->
+        <div class="timeline-rose" aria-hidden="true">
+          <img src="assets/pink-flower.png" alt="">
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-time">6:00 PM</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-event">Sehra Bandi<br>at Home</div>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-time">7:00 PM</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-event">Departure<br>of Barat</div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ════════════════════════════════════════════════════════════
+       LOCATION
+       ════════════════════════════════════════════════════════════ -->
+    <section id="location">
+      <!-- Petals are generated into this container by script.js -->
+      <div class="petal-field" aria-hidden="true"></div>
+
+      <h2 class="location-title reveal">Location</h2>
+      <div class="ornament-divider reveal">
+        <span class="ornament-curl-left">❧</span>
+        <span class="ornament-line"></span>
+        <span class="ornament-diamond"></span>
+        <span class="ornament-line"></span>
+        <span class="ornament-curl-right">❧</span>
+      </div>
+      <h3 class="location-venue reveal">Qashal Palace Marquee</h3>
+      <p class="location-address reveal">
+        Opposite Rahber Medical College,<br>
+        Harbanspura Road, Lahore, Pakistan
+      </p>
+
+      <!-- Framed map. The iframe is a still preview only — it is
+           pointer-events: none, and the overlaid link opens Google Maps. -->
+      <div class="map-frame reveal">
+        <div class="map-viewport">
+          <iframe class="map-embed"
+            src="https://maps.google.com/maps?q=Qashal%20Palace%20Marquee%2C%20Harbanspura%20Road%2C%20Lahore&amp;z=15&amp;output=embed"
+            title="Map showing Qashal Palace Marquee" loading="lazy" tabindex="-1"></iframe>
+          <a class="map-link"
+            href="https://www.google.com/maps/search/Qashal+Palace+Marquee+Harbanspura+Road+Lahore" target="_blank"
+            rel="noopener noreferrer">
+            <span class="sr-only">Open Qashal Palace Marquee in Google Maps</span>
+          </a>
+        </div>
+        <img class="map-ornament map-ornament-top" src="assets/ornament-top.png" alt="" loading="lazy">
+        <img class="map-ornament map-ornament-bottom" src="assets/ornament-bottom.png" alt="" loading="lazy">
+      </div>
+      <a class="location-btn reveal"
+        href="https://www.google.com/maps/search/Qashal+Palace+Marquee+Harbanspura+Road+Lahore" target="_blank"
+        rel="noopener noreferrer" id="get-directions-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+        </svg>
+        Get Directions
+      </a>
+    </section>
+
+
+
+    <!-- ════════════════════════════════════════════════════════════
+       CONTACT INFORMATION
+       ════════════════════════════════════════════════════════════ -->
+    <section id="contact">
+      <h2 class="contact-title reveal">Contact</h2>
+      <div class="ornament-divider reveal">
+        <span class="ornament-curl-left">❧</span>
+        <span class="ornament-line"></span>
+        <span class="ornament-diamond"></span>
+        <span class="ornament-line"></span>
+        <span class="ornament-curl-right">❧</span>
+      </div>
+      <div class="contact-cards">
+        <div class="contact-card reveal reveal-delay-1">
+          <p class="contact-name">Syed Akhtar Shah</p>
+          <a class="contact-phone" href="tel:+923051515015" id="contact-akhtar">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+            0305-1515015
+          </a>
+        </div>
+        <div class="contact-card reveal reveal-delay-2">
+          <p class="contact-name">Syed Mohid Shah</p>
+          <a class="contact-phone" href="tel:+923214533140" id="contact-mohid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+            0321-4533140
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ════════════════════════════════════════════════════════════
+       LOOKING FORWARD
+       ════════════════════════════════════════════════════════════ -->
+    <section id="looking-forward">
+      <h2 class="looking-forward-title reveal">Looking Forward</h2>
+      <p class="looking-forward-body reveal">All family members</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════════ -->
+    <footer id="footer">
+      <p class="footer-script reveal">Hope to see you there!</p>
+      <p class="footer-names reveal">Ammar and Zainab</p>
+      <img class="footer-floral-left" src="assets/left-border.png" alt="" loading="lazy">
+      <img class="footer-floral-right" src="assets/right-border.png" alt="" loading="lazy">
+    </footer>
+
+  </div><!-- /.page-wrapper -->
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>

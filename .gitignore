@@ -1,0 +1,10 @@
+# OS
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
