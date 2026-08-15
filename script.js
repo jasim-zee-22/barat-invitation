@@ -51,6 +51,10 @@
     videoWrap.classList.add('video-in');
     var vp = envVideo.play();
     if (vp && vp.catch) vp.catch(function () {});
+
+    /* Backstop in case canplaythrough never fired — the hero video is needed
+       the moment this one finishes. */
+    warmHeroVideo();
   }
 
   function endEnvelopeVideo() {
@@ -96,8 +100,44 @@
     }
   });
 
-  /* Preload envelope video */
-  envVideo.load();
+  /* ================================================================
+     0. STAGED MEDIA LOADING
+
+     Everything ships with preload="none" so the envelope cover — the only
+     thing on screen — gets the full connection. Each file is then warmed in
+     turn, so by the time someone taps, the envelope video is usually ready:
+
+       cover image onload  ->  envelope.mp4
+       envelope.mp4 ready  ->  hero.mp4
+       tap                 ->  barat.mp3 (loads as it plays)
+     ================================================================ */
+
+  var coverImg = overlay ? overlay.querySelector('.envelope-image') : null;
+
+  /* Idempotent — the preload check means repeat calls are free */
+  function warmMedia(el) {
+    if (el && el.preload !== 'auto') {
+      el.preload = 'auto';
+      el.load();
+    }
+  }
+
+  function warmEnvelopeVideo() { warmMedia(envVideo); }
+  function warmHeroVideo()     { warmMedia(heroVideo); }
+
+  if (coverImg && !coverImg.complete) {
+    coverImg.addEventListener('load', warmEnvelopeVideo, { once: true });
+    /* A broken cover must not strand the rest of the chain */
+    coverImg.addEventListener('error', warmEnvelopeVideo, { once: true });
+  } else {
+    warmEnvelopeVideo();
+  }
+
+  /* canplaythrough is a hint the browser may never fire, so the tap handler
+     warms the hero video too as a guaranteed backstop. */
+  if (envVideo) {
+    envVideo.addEventListener('canplaythrough', warmHeroVideo, { once: true });
+  }
 
   /* ================================================================
      2. AUDIO TOGGLE
