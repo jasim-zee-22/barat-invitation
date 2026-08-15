@@ -258,16 +258,14 @@ img {
 }
 
 /* .hero-content is centred in the hero, so this bottom margin lifts the
-   whole block by half its value. It was 200px when the scroll cue sat
-   outside; the cue now adds ~168px of height here, so this came down by
-   the same amount to leave the names where they were. */
+   whole block by half its value. */
 .hero-content {
   position: relative;
   z-index: 3;
   text-align: center;
   color: var(--gold);
   padding: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 200px;
 }
 
 .hero-subtitle {
@@ -321,13 +319,17 @@ img {
   animation: heroTextIn 1.2s 1.5s both;
 }
 
-/* Flows inside .hero-content rather than being pinned to the hero box, so
-   the gap below "Zainab" is the same on every screen. Anchoring it to the
-   bottom edge could not work: the video is object-fit: cover, so the swans
-   move within the box as the aspect ratio changes.
-   This margin is the knob for the gap — see .hero-content's margin-bottom. */
+/* Absolute rather than in flow: #hero is a flex row, so as a sibling of
+   .hero-content this would sit beside the names instead of below them.
+   left/right: 0 span the hero so text-align centres it — translateX would
+   be overwritten by the entrance animation's own transform. */
 .hero-scroll {
-  margin-top: 100px;
+  position: absolute;
+  bottom: 215px ;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  text-align: center;
   opacity: 0;
   animation: heroTextIn 1.2s 2s both;
 }
